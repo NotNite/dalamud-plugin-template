@@ -39,7 +39,20 @@ public class Plugin : IDalamudPlugin {
 
 #endif
 #elif (ServiceType == Constructor)
+    private readonly IDalamudPluginInterface pluginInterface;
+#if Command
+    private readonly ICommandManager commandManager;
+
+    public Plugin(IDalamudPluginInterface pluginInterface, ICommandManager commandManager) {
+        this.pluginInterface = pluginInterface;
+        this.commandManager = commandManager;
+#if (Configuration || Windowing)
+
+#endif
+#else
     public Plugin(IDalamudPluginInterface pluginInterface) {
+        this.pluginInterface = pluginInterface;
+#endif
 #elif (ServiceType == StaticProperty)
     [PluginService] public static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
 #if Command
@@ -52,7 +65,7 @@ public class Plugin : IDalamudPlugin {
 #if (ServiceType == GodObject)
         this.Configuration = Services.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration(pluginInterface);
 #elif (ServiceType == Constructor)
-        this.Configuration = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration(pluginInterface);
+        this.Configuration = this.pluginInterface.GetPluginConfig() as Configuration ?? new Configuration(pluginInterface);
 #elif (ServiceType == StaticProperty)
         this.Configuration = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
 #endif
@@ -74,8 +87,8 @@ public class Plugin : IDalamudPlugin {
         Services.PluginInterface.UiBuilder.Draw += this.DrawUi;
         Services.PluginInterface.UiBuilder.OpenMainUi += this.ToggleMainUi;
 #elif (ServiceType == Constructor)
-        pluginInterface.UiBuilder.Draw += this.DrawUi;
-        pluginInterface.UiBuilder.OpenMainUi += this.ToggleMainUi;
+        this.pluginInterface.UiBuilder.Draw += this.DrawUi;
+        this.pluginInterface.UiBuilder.OpenMainUi += this.ToggleMainUi;
 #elif (ServiceType == StaticProperty)
         PluginInterface.UiBuilder.Draw += this.DrawUi;
         PluginInterface.UiBuilder.OpenMainUi += this.ToggleMainUi;
@@ -84,7 +97,7 @@ public class Plugin : IDalamudPlugin {
 #if (ServiceType == GodObject)
         Services.PluginInterface.UiBuilder.OpenConfigUi += this.ToggleConfigUi;
 #elif (ServiceType == Constructor)
-        pluginInterface.UiBuilder.OpenConfigUi += this.ToggleConfigUi;
+        this.pluginInterface.UiBuilder.OpenConfigUi += this.ToggleConfigUi;
 #elif (ServiceType == StaticProperty)
         PluginInterface.UiBuilder.OpenConfigUi += this.ToggleConfigUi;
 #endif
@@ -97,7 +110,7 @@ public class Plugin : IDalamudPlugin {
 #if (ServiceType == GodObject)
         Services.CommandManager.AddHandler(CommandName, new CommandInfo(this.OnCommand) {
 #elif (ServiceType == Constructor)
-        pluginInterface.CommandManager.AddHandler(CommandName, new CommandInfo(this.OnCommand) {
+        this.commandManager.AddHandler(CommandName, new CommandInfo(this.OnCommand) {
 #elif (ServiceType == StaticProperty)
         CommandManager.AddHandler(CommandName, new CommandInfo(this.OnCommand) {
 #endif
@@ -115,7 +128,7 @@ public class Plugin : IDalamudPlugin {
 #if (ServiceType == GodObject)
         Services.CommandManager.RemoveHandler(CommandName);
 #elif (ServiceType == Constructor)
-        pluginInterface.CommandManager.RemoveHandler(CommandName);
+        this.commandManager.RemoveHandler(CommandName);
 #elif (ServiceType == StaticProperty)
         CommandManager.RemoveHandler(CommandName);
 #endif
@@ -140,8 +153,8 @@ public class Plugin : IDalamudPlugin {
         Services.PluginInterface.UiBuilder.Draw -= this.DrawUi;
         Services.PluginInterface.UiBuilder.OpenMainUi -= this.ToggleMainUi;
 #elif (ServiceType == Constructor)
-        pluginInterface.UiBuilder.Draw -= this.DrawUi;
-        pluginInterface.UiBuilder.OpenMainUi -= this.ToggleMainUi;
+        this.pluginInterface.UiBuilder.Draw -= this.DrawUi;
+        this.pluginInterface.UiBuilder.OpenMainUi -= this.ToggleMainUi;
 #elif (ServiceType == StaticProperty)
         PluginInterface.UiBuilder.Draw -= this.DrawUi;
         PluginInterface.UiBuilder.OpenMainUi -= this.ToggleMainUi;
@@ -150,7 +163,7 @@ public class Plugin : IDalamudPlugin {
 #if (ServiceType == GodObject)
         Services.PluginInterface.UiBuilder.OpenConfigUi -= this.ToggleConfigUi;
 #elif (ServiceType == Constructor)
-        pluginInterface.UiBuilder.OpenConfigUi -= this.ToggleConfigUi;
+        this.pluginInterface.UiBuilder.OpenConfigUi -= this.ToggleConfigUi;
 #elif (ServiceType == StaticProperty)
         PluginInterface.UiBuilder.OpenConfigUi -= this.ToggleConfigUi;
 #endif

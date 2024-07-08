@@ -60,29 +60,36 @@
   },
   "sources": [
     {
+      "include": [
+        "**/*"
+      ],
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "**/.git/**",
+        "**/.vs/**",
+        "**/.idea/**",
+        "**/.template.config/**",
+        "**/README.md"
+      ],
       "modifiers": [
         {
           "condition": "(ServiceType != 'GodObject')",
           "exclude": ["Services.cs"]
-        }
-      ]
-    },
-    {
-      "modifiers": [
+        },
         {
-          "condition": "!Configuration",
+          "condition": "(!(Configuration))",
           "exclude": ["Configuration.cs"]
-        }
-      ]
-    },
-    {
-      "modifiers": [
+        },
         {
-          "condition": "!Windowing",
+          "condition": "(!(Windowing))",
           "exclude": ["Windows/MainWindow.cs"]
         },
         {
-          "condition": "(!Windowing || !Configuration)",
+          "condition": "(!(Windowing) || !(Configuration))",
           "exclude": ["Windows/ConfigWindow.cs"]
         }
       ]
