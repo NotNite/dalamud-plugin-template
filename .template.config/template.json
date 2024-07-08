@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "NotNite",
+  "classifications": ["Common", "Library", "Dalamud", "Plugin"],
+  "identity": "Dalamud.Plugin.Template",
+  "name": "Dalamud Plugin",
+  "shortName": "dalamudplugin",
+  "sourceName": "SamplePlugin",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "Configuration": {
+      "displayName": "Enable Configuration",
+      "description": "Whether to include a configuration file for the plugin",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "Windowing": {
+      "displayName": "Enable Windowing",
+      "description": "Whether to include the Dalamud window system for the plugin",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "Command": {
+      "displayName": "Enable Command",
+      "description": "Whether to include the Dalamud command system for the plugin",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "ServiceType": {
+      "displayName": "Service Type",
+      "description": "How services are accessed in the plugin",
+      "type": "parameter",
+      "dataType": "choice",
+      "enableQuotelessLiterals": true,
+      "choices": [
+        {
+          "choice": "GodObject",
+          "displayName": "God Object",
+          "description": "Services are accessed through static properties on a Services class"
+        },
+        {
+          "choice": "Constructor",
+          "displayName": "Constructor Injection",
+          "description": "Services are passed to the plugin constructor"
+        },
+        {
+          "choice": "StaticProperty",
+          "displayName": "Static Property",
+          "description": "Services are accessed through a static property on the Plugin class"
+        }
+      ],
+      "defaultValue": "GodObject"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(ServiceType != 'GodObject')",
+          "exclude": ["Services.cs"]
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "condition": "!Configuration",
+          "exclude": ["Configuration.cs"]
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "condition": "!Windowing",
+          "exclude": ["Windows/MainWindow.cs"]
+        },
+        {
+          "condition": "(!Windowing || !Configuration)",
+          "exclude": ["Windows/ConfigWindow.cs"]
+        }
+      ]
+    }
+  ]
+}
