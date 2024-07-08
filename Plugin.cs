@@ -63,7 +63,7 @@ public class Plugin : IDalamudPlugin {
 #endif
 #if Configuration
 #if (ServiceType == GodObject)
-        this.Configuration = Services.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration(pluginInterface);
+        this.Configuration = Services.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
 #elif (ServiceType == Constructor)
         this.Configuration = this.pluginInterface.GetPluginConfig() as Configuration ?? new Configuration(pluginInterface);
 #elif (ServiceType == StaticProperty)
