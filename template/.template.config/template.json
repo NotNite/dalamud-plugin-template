@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "NotNite",
   "classifications": ["Common", "Library", "Dalamud", "Plugin"],
-  "identity": "Dalamud.Plugin.Template",
+  "identity": "NotNite.DalamudPluginTemplate",
   "name": "Dalamud Plugin",
   "shortName": "dalamudplugin",
   "sourceName": "SamplePlugin",
@@ -75,7 +75,8 @@
         "**/.vs/**",
         "**/.idea/**",
         "**/.template.config/**",
-        "**/README.md"
+        "**/README.md",
+        "**/packages.lock.json"
       ],
       "modifiers": [
         {
