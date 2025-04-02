@@ -1,6 +1,6 @@
 # Dalamud Plugin Template
 
-(Of course, because we needed another one).
+(Of course, because we needed another one.)
 
 This is a template for the [.NET Template Engine](https://github.com/dotnet/templating) to make Dalamud plugins. It has several benefits over [SamplePlugin](https://github.com/goatcorp/SamplePlugin):
 

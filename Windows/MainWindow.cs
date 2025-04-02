@@ -6,7 +6,7 @@ namespace SamplePlugin.Windows;
 
 public class MainWindow() : Window("SamplePlugin"), IDisposable {
     public override void Draw() {
-        ImGui.Text("Hello, world!");
+        ImGui.TextUnformatted("Hello, world!");
     }
 
     public void Dispose() { }

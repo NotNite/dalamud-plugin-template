@@ -65,6 +65,7 @@
         ".gitignore"
       ],
       "exclude": [
+        "*.sln",
         "**/[Bb]in/**",
         "**/[Oo]bj/**",
         "**/*.filelist",
@@ -77,6 +78,12 @@
         "**/README.md"
       ],
       "modifiers": [
+        {
+          "rename": {
+            ".gitignore": "../.gitignore",
+            "LICENSE": "../LICENSE"
+          }
+        },
         {
           "condition": "(ServiceType != 'GodObject')",
           "exclude": ["Services.cs"]
