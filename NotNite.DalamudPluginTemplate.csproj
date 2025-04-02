@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <PackageId>NotNite.DalamudPluginTemplate</PackageId>
     <Title>Dalamud Plugin Template</Title>
     <Authors>NotNite</Authors>
-    <Description>A Dalamud plugin template for the .NET Template Engine </Description>
+    <Description>A Dalamud plugin template for the .NET Template Engine</Description>
     <PackageTags>dotnet-new;templates</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RepositoryUrl>https://github.com/NotNite/dalamud-plugin-template</RepositoryUrl>
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -17,6 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" />
+    <None Include="LICENSE" Pack="true" />
     <Content Include="template\**\*" Exclude="template\bin\**;template\obj\**" />
     <Compile Remove="**\*" />
   </ItemGroup>

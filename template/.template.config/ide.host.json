@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/ide.host.json",
+  "order": 0,
+  "icon": "dalamud.png",
+  "symbolInfo": [
+    {
+      "id": "Configuration",
+      "isVisible": true
+    },
+    {
+      "id": "Windowing",
+      "isVisible": true
+    },
+    {
+      "id": "Command",
+      "isVisible": true
+    },
+    {
+      "id": "ServiceType",
+      "isVisible": true
+    },
+    {
+      "id": "MoveExtraFiles",
+      "isVisible": true
+    }
+  ]
+}

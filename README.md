@@ -15,10 +15,10 @@ This is a template for the [.NET Template Engine](https://github.com/dotnet/temp
 - Choose your bias
   - Service injection via god objects, constructor injection, or static properties
   - No provided .editorconfig, bring your own code style & reformat
-  - Contains a .gitignore ignoring JetBrains IDEs
 - Clean
   - No image loading or Data folder to strip out
   - Ships with a proper LICENSE file without the Markdown extension
+  - Contains a .gitignore ignoring JetBrains IDEs
 
 ## Installation
 
@@ -28,7 +28,13 @@ Run this command in your terminal:
 dotnet new install NotNite.DalamudPluginTemplate --nuget-source https://nuget.n2.pm/v3/index.json
 ```
 
-You can then use `dotnet new dalamudplugin` to create a new plugin, or use the GUI in Visual Studio/JetBrains Rider.
+You can then use the template when creating a plugin:
+
+- Visual Studio: Click "Create a new project" and select "Dalamud Plugin (NotNite)".
+- JetBrains Rider: Click "New Solution" and select "Dalamud Plugin".
+- dotnet CLI: `dotnet new dalamudplugin --name MyDalamudPlugin --MoveExtraFiles false`
+
+By default, the template will copy the `.gitignore` and `LICENSE` files to the parent directory. If you are creating a new project in an existing solution, or your solution and project is in the same folder, make sure to disable "Move Extra Files".
 
 Available options:
 
@@ -41,11 +47,12 @@ Available options:
   - If `Windowing` is enabled, a config window is created
 - `Command`: Whether to include the Dalamud command system for the plugin
   - If `Windowing` is enabled, the command toggles the UI
+- `MoveExtraFiles`: Whether to move extra files (e.g. .gitignore) to the parent directory
 
-If you want to work on the template, clone this repository and run this command:
+If you want to work on the template locally, clone this repository and run this command:
 
 ```shell
-dotnet new install --force .
+dotnet new install --force ./template
 ```
 
 ## Problems

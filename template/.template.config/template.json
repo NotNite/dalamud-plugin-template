@@ -1,15 +1,18 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "NotNite",
-  "classifications": ["Common", "Library", "Dalamud", "Plugin"],
+  "classifications": ["Games"],
   "identity": "NotNite.DalamudPluginTemplate",
   "name": "Dalamud Plugin",
   "shortName": "dalamudplugin",
   "sourceName": "SamplePlugin",
+  "defaultName": "MyDalamudPlugin",
+  "description": "A Dalamud plugin template for the .NET Template Engine",
   "tags": {
     "language": "C#",
     "type": "project"
   },
+  "preferNameDirectory": true,
   "symbols": {
     "Configuration": {
       "displayName": "Enable Configuration",
@@ -56,14 +59,18 @@
         }
       ],
       "defaultValue": "GodObject"
+    },
+    "MoveExtraFiles": {
+      "displayName": "Move Extra Files",
+      "description": "Whether to move extra files (e.g. .gitignore) to the parent directory",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
     }
   },
   "sources": [
     {
-      "include": [
-        "**/*",
-        ".gitignore"
-      ],
+      "include": ["**/*", ".gitignore"],
       "exclude": [
         "*.sln",
         "**/[Bb]in/**",
@@ -80,6 +87,7 @@
       ],
       "modifiers": [
         {
+          "condition": "MoveExtraFiles",
           "rename": {
             ".gitignore": "../.gitignore",
             "LICENSE": "../LICENSE"
