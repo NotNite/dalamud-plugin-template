@@ -22,10 +22,10 @@ This is a template for the [.NET Template Engine](https://github.com/dotnet/temp
 
 ## Installation
 
-Clone this repository and run this command:
+Run this command in your terminal:
 
 ```shell
-dotnet new install --force .
+dotnet new install NotNite.DalamudPluginTemplate --nuget-source https://nuget.n2.pm/v3/index.json
 ```
 
 You can then use `dotnet new dalamudplugin` to create a new plugin, or use the GUI in Visual Studio/JetBrains Rider.
@@ -41,6 +41,12 @@ Available options:
   - If `Windowing` is enabled, a config window is created
 - `Command`: Whether to include the Dalamud command system for the plugin
   - If `Windowing` is enabled, the command toggles the UI
+
+If you want to work on the template, clone this repository and run this command:
+
+```shell
+dotnet new install --force .
+```
 
 ## Problems
 
