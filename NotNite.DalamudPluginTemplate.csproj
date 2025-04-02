@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <PackageId>NotNite.DalamudPluginTemplate</PackageId>
     <Title>Dalamud Plugin Template</Title>
     <Authors>NotNite</Authors>
@@ -22,7 +22,7 @@
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="LICENSE" Pack="true" PackagePath="\" />
-    <Content Include="template\**\*" Exclude="template\bin\**;template\obj\**" />
+    <Content Include="template\**\*" Exclude="template\bin\**;template\obj\**;template\packages.lock.json" />
     <Compile Remove="**\*" />
   </ItemGroup>
 </Project>
